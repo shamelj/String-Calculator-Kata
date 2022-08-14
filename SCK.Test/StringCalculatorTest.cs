@@ -10,8 +10,8 @@ namespace SCK.Test
         }
 
         [Theory]
-        [InlineData("",0)]
-        public void Add_EmptyString_ReturnsZero(string input, int expected )
+        [InlineData("", 0)]
+        public void Add_EmptyString_ReturnsZero(string input, int expected)
         {
             int actual = calculator.Add(input);
             Assert.Equal(expected, actual);
@@ -50,5 +50,17 @@ namespace SCK.Test
             int actual = calculator.Add(input);
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void Add_NegativeNumbers_ReturnsSum()
+        {
+            var input = "1,-1,-4";
+            Action act = () => calculator.Add(input);
+            var exception = Assert.Throws<ArgumentException>(act);
+            var actual = exception.Message;
+            var expected = "negatives not allowed: -1, -4";
+            Assert.Equal(actual, expected);
+        }
+
     }
 }
