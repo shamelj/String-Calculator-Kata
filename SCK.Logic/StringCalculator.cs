@@ -19,9 +19,17 @@
                 return 0;
             IEnumerable<int> integerNumbers = ParseInput(input);
             ValidateInput(integerNumbers);
-            var sum = integerNumbers.Sum();
+            var filteredNumbers = FilterNumbers(integerNumbers);
+            var sum = filteredNumbers.Sum();
             return sum;
         }
+
+        private IEnumerable<int> FilterNumbers(IEnumerable<int> integerNumbers)
+        {
+            int MAX_NUMBER = 1000;
+            return integerNumbers.Where(num => num <= MAX_NUMBER);
+        }
+
         private IEnumerable<int> ParseInput(string input)
         {
             var delimiters = GetDelimiters(input);
