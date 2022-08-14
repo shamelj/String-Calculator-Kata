@@ -52,7 +52,7 @@ namespace SCK.Test
         }
 
         [Fact]
-        public void Add_NegativeNumbers_ReturnsSum()
+        public void Add_NegativeNumbers_ReturnsException()
         {
             var input = "1,-1,-4";
             Action act = () => calculator.Add(input);
@@ -61,6 +61,13 @@ namespace SCK.Test
             var expected = "negatives not allowed: -1, -4";
             Assert.Equal(actual, expected);
         }
-
+        [Fact]
+        public void Add_BigNumbers_ReturnsSum()
+        {
+            var input = "2,1001";
+            var actual = calculator.Add(input);
+            var expected = 2;
+            Assert.Equal(actual, expected);
+        }
     }
 }
