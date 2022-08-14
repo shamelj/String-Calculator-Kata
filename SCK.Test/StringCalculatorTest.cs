@@ -19,7 +19,25 @@ namespace SCK.Test
         [Theory]
         [InlineData("1", 1)]
         [InlineData("2,3", 5)]
-        public void Add_MuiltipleNumbers_ReturnsSum(string input, int expected)
+        public void Add_CommaSeperatedNumbers_ReturnsSum(string input, int expected)
+        {
+            int actual = calculator.Add(input);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("1\n2", 3)]
+        [InlineData("1\n2\n3", 6)]
+        public void Add_LineSeperatedNumbers_ReturnsSum(string input, int expected)
+        {
+            int actual = calculator.Add(input);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("1\n2,3", 6)]
+        [InlineData("1,2\n3", 6)]
+        public void Add_NumbersWithVariousSeperators_ReturnsSum(string input, int expected)
         {
             int actual = calculator.Add(input);
             Assert.Equal(expected, actual);
