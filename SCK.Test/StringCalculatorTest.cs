@@ -37,7 +37,15 @@ namespace SCK.Test
         [Theory]
         [InlineData("1\n2,3", 6)]
         [InlineData("1,2\n3", 6)]
-        public void Add_NumbersWithVariousSeperators_ReturnsSum(string input, int expected)
+        public void Add_NumbersWithVariousDelimiter_ReturnsSum(string input, int expected)
+        {
+            int actual = calculator.Add(input);
+            Assert.Equal(expected, actual);
+        }
+        [Theory]
+        [InlineData("//;\n1;2", 3)]
+        [InlineData("///\n1/2", 3)]
+        public void Add_NumbersWithSpecifiedDelimiter_ReturnsSum(string input, int expected)
         {
             int actual = calculator.Add(input);
             Assert.Equal(expected, actual);
